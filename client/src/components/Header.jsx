@@ -6,6 +6,7 @@ import { FaMoon, FaSun } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toogleTheme } from "../redux/Theme/themeSlice";
 import { SignoutUserSuccess } from "../redux/User/userSlice";
+import logo from "../assets/logo.png";
 
 export default function Header() {
   const location = useLocation();
@@ -42,15 +43,15 @@ export default function Header() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if(searchTerm) {
-      const urlParams = new URLSearchParams(location.search)
-      urlParams.set('searchTerm', searchTerm)
-      const searchQuery = urlParams.toString()
-      navigate(`/search?${searchQuery}`)
+    if (searchTerm) {
+      const urlParams = new URLSearchParams(location.search);
+      urlParams.set("searchTerm", searchTerm);
+      const searchQuery = urlParams.toString();
+      navigate(`/search?${searchQuery}`);
     }
-  }
+  };
   return (
     <Navbar className="border-b-2">
       {/* ---------logo---------------- */}
@@ -58,10 +59,7 @@ export default function Header() {
         to="/"
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white"
       >
-        <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-xl text-white">
-          Prem's
-        </span>
-        Blog
+        <img src="https://qums.quantumuniversity.edu.in/Account/showClientLogo" className="w-28 object-cover" />
       </Link>
 
       {/* ----------Input Box for Search Bar in PC View------------------ */}
@@ -107,14 +105,16 @@ export default function Header() {
                 {currentUser.email}
               </span>
             </Dropdown.Header>
-            {currentUser.isAdmin && <Link to="/dashboard?tab=dashboard">
-              <Dropdown.Item>Dashboard</Dropdown.Item>
-            </Link>}
+            {currentUser.isAdmin && (
+              <Link to="/dashboard?tab=dashboard">
+                <Dropdown.Item>Dashboard</Dropdown.Item>
+              </Link>
+            )}
             <Link to="/dashboard?tab=profile">
               <Dropdown.Item>Profile</Dropdown.Item>
             </Link>
-              <Dropdown.Divider />
-              <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
+            <Dropdown.Divider />
+            <Dropdown.Item onClick={handleSignout}>Sign out</Dropdown.Item>
           </Dropdown>
         ) : (
           <Link to="/sign-in">
@@ -134,8 +134,32 @@ export default function Header() {
         <Navbar.Link active={path === "/about"} as={"div"}>
           <Link to="/about">About</Link>
         </Navbar.Link>
+        <Navbar.Link active={path === "/admission"} as={"div"}>
+          <Link to="/about">Admission</Link>
+        </Navbar.Link>
         <Navbar.Link active={path === "/projects"} as={"div"}>
-          <Link to="/projects">Projects</Link>
+          <Link>
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={
+                <p>Courses</p>
+              }
+            >
+              <Dropdown.Header>
+                <span className="block text-sm">B. Tech</span>
+                <span className="block text-sm font-medium truncate">
+                  BCA
+                </span>
+                <span className="block text-sm font-medium truncate">
+                  B Pharma
+                </span>
+                <span className="block text-sm font-medium truncate">
+                  BMRIT
+                </span>
+              </Dropdown.Header>
+            </Dropdown>
+          </Link>
         </Navbar.Link>
       </Navbar.Collapse>
     </Navbar>

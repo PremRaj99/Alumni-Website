@@ -18,23 +18,31 @@ export default function Home() {
   }, []);
   return (
     <div>
-      <div className="flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold lg:text-6xl">Welcome to my blog</h1>
-        <p className="text-gray-500 text-xs sm:text-sm">
-          Here you will find a verity of articles and tutorials on topic such as
-          web devlopment, software engineering, and programming language.
+      <div className="w-full h-screen flex items-center justify-center gap-16 ">
+      <div className="flex h-screen gap-10 justify-center flex-col p-28 px-3 max-w-6xl">
+        <h1 className="text-3xl font-bold lg:text-6xl">
+          Welcome to <br /> <span className="text-pink-700 text-7xl">Quantum University.</span>
+        </h1>
+        <p className="text-gray-500 max-w-[80ch] text-xs sm:text-sm">
+          Quantum University unfolds a whole new age of learning! It takes into
+          account your aspirations and your passions. It offers a unique
+          inter-disciplinary environment where one could study computer science
+          with economics, agriculture with entrepreneurship, or MBA with cyber
+          security. Hundreds of such combinations are waiting to be explored. At
+          the same time one is given the opportunity to follow his or her
+          Passion in Theatre, Sports, Music, Dance, Photography and much more.
         </p>
         <Link
           to="/search"
           className="text-xs sm:text-sm text-teal-500 font-bold hover:underline"
         >
-          View all posts
+          Explore More
         </Link>
       </div>
-      <div className="p-3 bg-amber-100 dark:bg-slate-700">
-        <CallToAction />
+      
+      <img src="https://www.quantumuniversity.edu.in/images/headers/home/02.jpg" className="w-[650px] rounded-xl border-3" alt="" />
       </div>
-
+      
       <div className="max-w-6xl mx-auto p-3 flex flex-col gap-8 py-7">
         {posts && posts.length > 0 && (
           <div className="flex flex-col gap-6">
@@ -44,9 +52,17 @@ export default function Home() {
                 <PostCard key={post._id} post={post} />
               ))}
             </div>
-            <Link to='/search' className="text-lg text-teal-500 hover:underline text-center">View all posts</Link>
+            <Link
+              to="/search"
+              className="text-lg text-teal-500 hover:underline text-center"
+            >
+              View all posts
+            </Link>
           </div>
         )}
+      </div>
+      <div className="p-3 bg-amber-100 dark:bg-slate-700">
+        <CallToAction />
       </div>
     </div>
   );
